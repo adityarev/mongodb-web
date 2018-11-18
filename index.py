@@ -6,7 +6,7 @@ import pymongo
 
 
 class Index:
-    def __int__(self):
+    def __init__(self):
         self.collection = self._new_collection()
 
     # Create new database
