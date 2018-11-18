@@ -42,7 +42,8 @@ class Index:
     def read_index(self):
         events = self.collection.find_events(page=1)
 
-        return bottle.template('./public/src/index', dict(events=events))
+        # return bottle.template('./public/src/index.html', dict(events=events))
+        return bottle.template('./public/src/index.tpl', dict(events=events))
 
     # Delete Method
     def delete_event(self):
