@@ -40,10 +40,12 @@ class Index:
 
     # Read Method
     def read_index(self):
+        file = open('./public/src/index.html', 'r')
+        html = file.read()
+
         events = self.collection.find_events(page=1)
 
-        # return bottle.template('./public/src/index.html', dict(events=events))
-        return bottle.template('index', dict(events=events))
+        return bottle.template(html, dict(events=events))
 
     # Delete Method
     def delete_event(self):
