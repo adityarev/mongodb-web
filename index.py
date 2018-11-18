@@ -41,7 +41,7 @@ class Index:
     # Read Method
     def read_index(self):
         file = open('./public/src/index.html', 'r')
-        html = file.read()
+        html = file.read().replace('\n', '')
 
         events = self.collection.find_events(page=1)
 
