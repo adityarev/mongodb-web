@@ -13,7 +13,7 @@ class Index:
     def _set_collection(self):
         connection_string = CONNECTION_STRING
         connection = pymongo.MongoClient(connection_string)
-        database = connection.persons
+        database = connection.events
         collection = EventsDAO(database)
 
         self.collection = collection
