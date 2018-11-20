@@ -10,19 +10,19 @@ class Index:
         self.collection = None
 
     # Create new database
-    def _set_collection(self):
-        connection_string = CONNECTION_STRING
-        connection = pymongo.MongoClient(connection_string)
-        database = connection.events
-        collection = EventsDAO(database)
+    def _set_collection(self, collection):
+        # connection_string = CONNECTION_STRING
+        # connection = pymongo.MongoClient(connection_string)
+        # database = connection.events
+        # collection = EventsDAO(database)
 
         self.collection = collection
 
     # Set routes
-    def _set_routes(self):
-        bottle.route('/', callback=self.read_index())
-        bottle.route('/create', method='POST', callback=self.create_event())
-        bottle.route('/delete', method='POST', callback=self.delete_event())
+    # def _set_routes(self):
+    #     bottle.route('/', callback=self.read_index())
+    #     bottle.route('/create', method='POST', callback=self.create_event())
+    #     bottle.route('/delete', method='POST', callback=self.delete_event())
 
     # Create Method
     def create_event(self):
@@ -55,8 +55,18 @@ class Index:
 
     # Main
     def run(self):
-        self._set_collection()
-        self._set_routes()
+        # self._set_collection()
+        connection_string = CONNECTION_STRING
+        connection = pymongo.MongoClient(connection_string)
+        database = connection.events
+        collection = EventsDAO(database)
+
+        self._set_collection(collection)
+
+        # self._set_routes()
+        bottle.route('/', callback=self.read_index())
+        bottle.route('/create', method='POST', callback=self.create_event())
+        bottle.route('/delete', method='POST', callback=self.delete_event())
 
         bottle.debug(True)
         bottle.run(host=HOST, port=PORT)
