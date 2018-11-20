@@ -9,10 +9,10 @@ class EventsDAO:
         self.events = database.events
 
     # Handle read events
-    def find_events(self, page):
-        events = self.events.find()\
-            .skip((page - 1) * constants.DAO.PAGINATION)\
-            .limit(constants.DAO.LIMIT)
+    def find_events(self, page=1):
+        events = self.events.find()
+            # .skip((page - 1) * constants.DAO.PAGINATION)\
+            # .limit(constants.DAO.LIMIT)
 
         return events
 
