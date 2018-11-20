@@ -7,17 +7,16 @@ import pymongo
 
 class Index:
     def __init__(self):
-        self.collection = self._new_collection()
+        self.collection = None
 
     # Create new database
-    @staticmethod
-    def _new_collection():
+    def _set_collection(self):
         connection_string = CONNECTION_STRING
         connection = pymongo.MongoClient(connection_string)
         database = connection.persons
         collection = EventsDAO(database)
 
-        return collection
+        self.collection = collection
 
     # Set routes
     def _set_routes(self):
@@ -56,6 +55,7 @@ class Index:
 
     # Main
     def run(self):
+        self._set_collection()
         self._set_routes()
 
         bottle.debug(True)
